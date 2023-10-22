@@ -1,23 +1,23 @@
-// Electric Car interface
+// interface for electric car
 interface ElectricCar {
     void charge();
     void drive();
 }
 
-// Gasoline Car interface
+// interface for gas car
 interface GasolineCar {
     void refuel();
     void accelerate();
 }
 
-// Common Car interface
+// basic car interface
 interface Car {
     void start();
     void accelerate();
     void stop();
 }
 
-// Adapter for Electric Car
+// electric car adapter
 class ElectricCarAdapter implements Car {
     private ElectricCar electricCar;
 
@@ -42,7 +42,7 @@ class ElectricCarAdapter implements Car {
     }
 }
 
-// Adapter for Gasoline Car
+// gas car adapter
 class GasolineCarAdapter implements Car {
     private GasolineCar gasolineCar;
 
@@ -80,7 +80,7 @@ class Tesla implements ElectricCar {
     }
 }
 
-// Concrete Gasoline Car
+// concrete gasoline car
 class Ford implements GasolineCar {
     @Override
     public void refuel() {
