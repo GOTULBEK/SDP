@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.EventListener;
 import java.util.EventObject;
 
-// Step 1: Create a custom event class
+//create WeatherDataEvent class that extends EventObject
 class WeatherDataEvent extends EventObject {
     private double temperature;
     private double humidity;
@@ -23,12 +23,12 @@ class WeatherDataEvent extends EventObject {
     }
 }
 
-// Step 2: Define a custom listener interface
+// create listener
 interface WeatherDataListener extends EventListener {
     void onWeatherDataChanged(WeatherDataEvent event);
 }
 
-// Step 3: Create a class that generates weather data events
+// class that generate wether
 class WeatherStation {
     private List<WeatherDataListener> listeners = new ArrayList<>();
     private double temperature;
@@ -46,7 +46,7 @@ class WeatherStation {
         this.temperature = temperature;
         this.humidity = humidity;
 
-        // Notify all registered listeners
+        // send notification to all listeners
         WeatherDataEvent event = new WeatherDataEvent(this, temperature, humidity);
         for (WeatherDataListener listener : listeners) {
             listener.onWeatherDataChanged(event);
@@ -62,7 +62,7 @@ class WeatherStation {
     }
 }
 
-// Step 4: Create display modules that implement the listener interface
+// print the temperature for listeners
 class TemperatureDisplay implements WeatherDataListener {
     @Override
     public void onWeatherDataChanged(WeatherDataEvent event) {
@@ -83,17 +83,17 @@ public class WeatherMonitoringSystem {
         TemperatureDisplay tempDisplay = new TemperatureDisplay();
         HumidityDisplay humidityDisplay = new HumidityDisplay();
 
-        // Register the display modules as listeners
+        // add listeners to display
         weatherStation.addListener(tempDisplay);
         weatherStation.addListener(humidityDisplay);
 
-        // Simulate weather data changes
+        // set a weather data
         weatherStation.setWeatherData(25.5, 65.2);
 
-        // Unregister the temperature display
+        // remove listeners
         weatherStation.removeListener(tempDisplay);
 
-        // Simulate weather data changes again (only humidity display will be updated)
+        // set weather data again
         weatherStation.setWeatherData(27.0, 70.5);
     }
 }
